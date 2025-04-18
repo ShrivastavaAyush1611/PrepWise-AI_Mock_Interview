@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { vapi } from "@/lib/vapi.sdk";
+import { interviewer } from "@/constants";
+// import { createFeedback } from "@/lib/actions/general.action";
 
 enum CallStatus {
     INACTIVE = "INACTIVE",
@@ -69,10 +71,28 @@ const Agent = ({userName,userId,type,interviewId,feedbackId,questions,}:AgentPro
       }
     }
   },[messages, callStatus, feedbackId, interviewId, router, type, userId])
-  
-  const handleCall = async()=>{
+
+
+  const handleGenerateFeedback = async(messages:SavedMessage[]) => {
+    console.log('Generate Feedback here')
+
+    const { success, feedbackId: id } = await createFeedback({
+      interviewId: interviewId!,
+      userId: userId!,
+      transcript: messages,
+      feedbackId,
+    });
+    if (success && id) {
+      router.push(`/interview/${interviewId}/feedback`);
+    } else {
+      console.log("Error saving feedback");
+      router.push("/");
+    }
+  }
+   const handleCall = async()=>{
     try{
     setCallStatus(CallStatus.CONNECTING);
+    if(type === 'generate'){
     const workflowId = process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
     if (!workflowId) {
       console.error("VAPI Workflow ID is not working Properly.");
@@ -84,11 +104,25 @@ const Agent = ({userName,userId,type,interviewId,feedbackId,questions,}:AgentPro
         userid: userId,
       },
     });
+  }else{
+    let formattedQuestions = "";
+      if (questions) {
+        formattedQuestions = questions
+          .map((question) => `- ${question}`)
+          .join("\n");
+    }
+    await vapi.start(interviewer,{
+      variableValues:{
+        questions:formattedQuestions,
+      },
+    })
+  }
   }catch(error){
     console.error("Failed to start the call:", error);
     setCallStatus(CallStatus.INACTIVE);
   }
   }
+
   const handleDisconnect = async()=>{
     try {
       setCallStatus(CallStatus.FINISHED);
