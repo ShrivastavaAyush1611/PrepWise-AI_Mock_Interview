@@ -71,17 +71,31 @@ const Agent = ({userName,userId,type,interviewId,feedbackId,questions,}:AgentPro
   },[messages, callStatus, feedbackId, interviewId, router, type, userId])
   
   const handleCall = async()=>{
+    try{
     setCallStatus(CallStatus.CONNECTING);
-    await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!,{
-      variableValues:{
+    const workflowId = process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
+    if (!workflowId) {
+      console.error("VAPI Workflow ID is not working Properly.");
+      return;
+    }
+    await vapi.start(workflowId, {
+      variableValues: {
         username: userName,
         userid: userId,
-      }
-    })
+      },
+    });
+  }catch(error){
+    console.error("Failed to start the call:", error);
+    setCallStatus(CallStatus.INACTIVE);
+  }
   }
   const handleDisconnect = async()=>{
-    setCallStatus(CallStatus.FINISHED);
-    vapi.stop();
+    try {
+      setCallStatus(CallStatus.FINISHED);
+      await vapi.stop();
+    } catch (error) {
+      console.error("Failed to disconnect the call:", error);
+    }
   }
 
   const lastMessage = messages[messages.length - 1]?.content;
@@ -115,7 +129,7 @@ const Agent = ({userName,userId,type,interviewId,feedbackId,questions,}:AgentPro
             alt="profile-image"
             width={539}
             height={539}
-            className="rounded-full object-cover size-[120px]"
+            className="rounded-full object-cover w-30 h-30"
           />
           <h3>{userName}</h3>
         </div>
