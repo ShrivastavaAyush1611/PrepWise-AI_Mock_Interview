@@ -5,7 +5,7 @@ import Agent from "@/components/Agent";
 import { getRandomInterviewCover } from "@/lib/utils";
 
 import {
-//   getFeedbackByInterviewId,
+  getFeedbackByInterviewId,
   getInterviewById,
 } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
@@ -19,6 +19,10 @@ const page = async({params}:RouteParams) => {
     const user = await getCurrentUser();
     const interview = await getInterviewById(id);
   if (!interview) redirect('/')
+    const feedback = await getFeedbackByInterviewId({
+      interviewId: id,
+      userId: user?.id!,
+    });
   return (
     <>
     <div className="flex flex-row gap-4 justify-between">
@@ -43,7 +47,7 @@ const page = async({params}:RouteParams) => {
       </div>
 
       <Agent
-        userName={user?.name!}
+        userName={user?.name || ''}
         userId={user?.id}
         interviewId={id}
         type="interview"
