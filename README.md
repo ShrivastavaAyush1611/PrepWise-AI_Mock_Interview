@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+PrepWise AI Mock Interview
 
-## Getting Started
+PrepWise is an AI-powered mock interview platform designed to help users practice and refine their interview skills.
+It simulates real-world interview scenarios by providing dynamic AI questions, evaluating responses, and offering valuable feedback for continuous improvement.
 
-First, run the development server:
+🔗 Live Site: prep-wise-ai-mock-interview.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+     🎤 Real-time AI-driven Mock Interviews
+  
+     💬 Dynamic Question Generation based on user-selected fields
+  
+     📄 Instant Feedback and Performance Scoring
+  
+     🧠 Adaptive Difficulty based on user responses
+  
+     🎯 Skill-focused Practice Sessions (Behavioral, Technical, HR, etc.)
+  
+     🌐 Modern, Responsive UI for a smooth user experience
+   
+     🛡️ Secure Authentication (if applicable)
+  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   Frontend: Next.js 14, Tailwind CSS
+   
+   Backend: Node.js, Express.js 
+   
+   AI Integration: OpenAI,GenAi API
+   
+   Authentication: Firebase OAuth 
+   
+   Hosting: Vercel
 
-## Learn More
+   📸 Screenshots
+   
+   HomePage:- ![prepwise](https://github.com/user-attachments/assets/ffe996dd-02eb-4621-8599-3dfbd6793eb2)
 
-To learn more about Next.js, take a look at the following resources:
+   Mock Interview Generation Screen:- ![image](https://github.com/user-attachments/assets/ea46639b-e074-4905-87b8-d0613d4dd44b)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   FeedBack Page:- ![image](https://github.com/user-attachments/assets/8e4715d5-0630-4858-b5c8-ec4c556701b5)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   
