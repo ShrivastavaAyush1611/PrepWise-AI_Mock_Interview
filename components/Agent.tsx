@@ -145,11 +145,11 @@ const Agent = ({userName,userId,type,interviewId,questions}:AgentProps) => {
       <div className="card-interviewer">
         <div className="avatar">
           <Image
-            src="/ai-avatar.png"
+            src="/ai_age.png"
             alt="profile-image"
-            width={65}
-            height={54}
-            className="object-cover"
+            width={115}
+            height={65}
+            className="object-cover rounded-full"
           />
           {isSpeaking && <span className="animate-speak" />}
         </div>
