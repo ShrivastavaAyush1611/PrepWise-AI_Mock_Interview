@@ -31,10 +31,10 @@ const Agent = ({userName,userId,type,interviewId,questions}:AgentProps) => {
     const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
     const onCallEnd = () => setCallStatus(CallStatus.FINISHED); 
     const onMessage = (message: Message) => {
-      if (message.type === "transcript" && message.transcriptType === "final") {
+      if (message.type === "transcript" && message.transcriptType === "final") {    //A transcript is typically a record of spoken words converted into text.
       const newMessage = { role: message.role, content: message.transcript };
       setMessages((prev) => [...prev, newMessage]);
-      }
+      } 
     };
     const onSpeechStart = () => setIsSpeaking(true);
     const onSpeechEnd = () => setIsSpeaking(false);

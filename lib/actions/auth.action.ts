@@ -96,7 +96,7 @@ export async function signUp(params: SignUpParams) {
   export async function getCurrentUser(): Promise<User | null> {
     const cookieStore = await cookies();
   
-    const sessionCookie = cookieStore.get("session")?.value;
+    const sessionCookie = cookieStore.get("session")?.value;  //Session Cookie: The session cookie is created during the sign-in process using the setSessionCookie function.
     if (!sessionCookie) return null;
   
     try {
@@ -106,7 +106,7 @@ export async function signUp(params: SignUpParams) {
       const userRecord = await db
         .collection("users")
         .doc(decodedClaims.uid)
-        .get();
+        .get();                              //The db.collection("users").doc(decodedClaims.uid).get() retrieves the user's data from Firestore.
       if (!userRecord.exists) return null;
   
       return {
