@@ -3,9 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/interviewCard";
-import {
-  getCurrentUser,
-} from "@/lib/actions/auth.action";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
@@ -25,14 +23,23 @@ const page = async () => {
   return (
     <>
       <section className="card-cta">
-        <div className="flex flex-col gap-6 max-w-lg">
-          <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
-          <p className="text-lg">
-            Practice real interview questions & get instant feedback
+        <div className="max-w-xl flex flex-col gap-6 p-6 from-[#1e293b] to-[#0f172a] rounded-xl shadow-lg text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold leading-tight">
+            Get Interview-Ready with{" "}
+            <span className="text-indigo-400">AI-Powered</span> Practice &
+            Feedback
+          </h2>
+
+          <p className="text-base sm:text-lg text-slate-300">
+            Simulate real interviews, sharpen your responses, and receive
+            instant, AI-generated feedback to level up your career.
           </p>
 
-          <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Prepare Your Interview</Link>
+          <Button
+            asChild
+            className="btn-primary bg-indigo-500 hover:bg-indigo-600 text-white py-3 px-6 text-lg rounded-md transition-all duration-300 max-sm:w-full"
+          >
+            <Link href="/interview">🚀 Prepare Your Interview</Link>
           </Button>
         </div>
 
@@ -45,7 +52,7 @@ const page = async () => {
         />
       </section>
 
-     {/*Your Interviews  */}
+      {/*Your Interviews  */}
       <section className="flex flex-col gap-6 mt-8">
         <h2>Your Interviews</h2>
 
@@ -64,7 +71,7 @@ const page = async () => {
       <section className="flex flex-col gap-6 mt-8">
         <h2>Take Interviews</h2>
         <div className="interviews-section">
-        {hasUpcomingInterviews ? (
+          {hasUpcomingInterviews ? (
             latestInterviews?.map((interview) => (
               <InterviewCard {...interview} key={interview.id} />
             ))
